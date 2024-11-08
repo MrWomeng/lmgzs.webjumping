@@ -1,0 +1,93 @@
+
+:root
+{
+    --bg-posX: 0px;
+    --bg-posY: 0px;  
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html
+{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(201, 201, 201);
+
+    overflow: hidden;
+}
+html::before
+{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    
+    background: url(../img/first.png)no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(70%);
+    /* backdrop-filter: blur(3px); */
+
+    /* 变形 放大 */
+    transform: scale(1.1);
+    
+    background-position: var(--bg-posX) var(--bg-posY);
+}
+
+body
+{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+}
+
+#shell
+{
+    width: 90%;
+    height: 90%;
+
+    margin: auto;
+
+    display: flex;
+}
+
+#shell #btn
+{
+    margin: auto;
+
+    /* border: none; */
+    color: #fff;
+    background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+    border-radius: 20px;
+    background-size: 100% auto;
+    font-family: inherit;
+    font-size: 17px;
+    padding: 0.6em 1.5em;
+
+    background-position: right center;
+    background-size: 200% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+}
+
+@keyframes pulse512
+{
+    0% {
+        box-shadow: 0 0 0 0 #05bada66;
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    }
+}
