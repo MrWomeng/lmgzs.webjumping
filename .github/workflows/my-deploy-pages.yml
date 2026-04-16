@@ -1,0 +1,57 @@
+# 
+name: 部署静态内容到 GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  # 当推送到 main 分支时触发
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  # 允许您从 操作 选项卡手动运行此工作流
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# 设置 GITHUB_TOKEN 的权限 以允许向 GitHub Pages 进行部署
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# 仅允许一次并发部署，跳过正在进行的运行与最新排队运行之间的排队运行。
+# 但是，请不要取消正在进行的运行，因为我们希望这些生产部署能够完成。
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+
+      # 1. 拉取当前仓库
+      - name: 拉取当前仓库
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          lfs: true
+
+      # 2. 配置 GitHub Pages
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # 3. 上传整个仓库作为 Pages 制品
+      - name: 上传整个仓库作为 Pages 制品
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      # 4. 部署到 GitHub Pages
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
