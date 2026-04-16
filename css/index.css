@@ -91,3 +91,20 @@ body
         box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
     }
 }
+
+/* 按钮和文字垂直居中排列 */
+.content-wrapper {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* 按钮和文字之间的间距 */
+}
+
+/* 提示文字样式 */
+#msg {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+}
