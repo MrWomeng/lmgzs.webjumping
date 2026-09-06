@@ -3,5 +3,5 @@ var btn = document.getElementById("btn");
 
 btn.onclick = function()
 {
-    window.location.href = "http://lmgzs.fun:444/";
+    window.location.href = "https://mmdocs.cc.cd/";
 }
